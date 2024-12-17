@@ -33,6 +33,7 @@ console.log(soma(2,3));
 
 let contador = 0;
 
+// Função para inicializar o contador
 const inicializarContador = () => {
   const h1 = document.getElementById("contador");
   const botao = document.getElementById("incrementar");
@@ -45,5 +46,45 @@ const inicializarContador = () => {
   botao.addEventListener("click", atualizarContador);
 };
 
-// Inicializa a funcionalidade quando a página carrega
-document.addEventListener("DOMContentLoaded", inicializarContador);
+// Função para inicializar a lista de tarefas
+const inicializarTarefa = () => {
+  const listaTarefas = document.getElementById("tarefas");
+  const botaoAdd = document.getElementById("botaoAdd");
+  const botaoExcluir = document.getElementById("botaoExcluir");
+
+  // Função para adicionar tarefa
+  const adicionarTarefa = () => {
+    const campoTarefa = document.getElementById("tarefa").value;
+
+    if (campoTarefa.trim() !== "") { // Evita adicionar tarefas vazias
+      const novaTarefa = document.createElement("li");
+      novaTarefa.textContent = campoTarefa;
+
+      // Botão de remover tarefa específico
+      const botaoRemover = document.createElement("button");
+      botaoRemover.textContent = "Remover";
+      botaoRemover.addEventListener("click", () => {
+        novaTarefa.remove();
+      });
+
+      novaTarefa.appendChild(botaoRemover);
+      listaTarefas.appendChild(novaTarefa);
+
+      document.getElementById("tarefa").value = ""; // Limpa o campo de input
+    }
+  };
+
+  // Função para excluir todas as tarefas
+  const removerTodasTarefas = () => {
+    listaTarefas.innerHTML = "";
+  };
+
+  botaoAdd.addEventListener("click", adicionarTarefa);
+  botaoExcluir.addEventListener("click", removerTodasTarefas);
+};
+
+// Inicializa tudo quando a página carregar
+document.addEventListener("DOMContentLoaded", () => {
+  inicializarContador();
+  inicializarTarefa();
+});
