@@ -1,5 +1,5 @@
 // Aguarda o DOM estar totalmente carregado antes de adicionar os eventos
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
     // Seleciona o formulário
     const formulario = document.getElementById('formulario');
 
@@ -19,4 +19,31 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("Por favor, preencha o campo de nome.");
         }
     });
-});
+})*/
+
+
+function square(numero){
+    return numero * numero;
+}
+
+console.log(square(5))
+
+const soma = (a,b) => a + b;
+console.log(soma(2,3));
+
+let contador = 0;
+
+const inicializarContador = () => {
+  const h1 = document.getElementById("contador");
+  const botao = document.getElementById("incrementar");
+
+  const atualizarContador = () => {
+    contador++;
+    h1.textContent = contador;
+  };
+
+  botao.addEventListener("click", atualizarContador);
+};
+
+// Inicializa a funcionalidade quando a página carrega
+document.addEventListener("DOMContentLoaded", inicializarContador);
